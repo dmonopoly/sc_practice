@@ -8,9 +8,7 @@ sc_require('models/task');
 
 Todos.Task.FIXTURES = [
 
-  
-  // All fixture records must have a unique primary key (default 'guid').  See 
-  // the example below.
+  // All fixture records must have a unique primary key (default 'guid').
 
   { guid: "task-1", // each of these can also have "" surrounding them, like "guid":"1"
     description: "Build my first SproutCore app",
