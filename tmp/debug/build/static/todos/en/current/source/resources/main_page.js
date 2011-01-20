@@ -34,3 +34,4 @@ Todos.mainPage = SC.Page.design({
   })
 
 });
+; if ((typeof SC !== 'undefined') && SC && SC.scriptDidLoad) SC.scriptDidLoad('todos');
