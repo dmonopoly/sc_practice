@@ -15,7 +15,20 @@ Todos.mainPage = SC.Page.design({
     
     topView: SC.ToolbarView.design({
     	layout: { top: 0, left: 0, right: 0, height: 36},
-    	anchorLocation: SC.ANCHOR_TOP
+    	childViews: 'labelView addButton'.w(),
+    	anchorLocation: SC.ANCHOR_TOP,
+    	
+    	labelView: SC.LabelView.design({
+		  	layout: { centerY: 0, height: 24, left: 8, width: 200 },
+		  	controlSize: SC.LARGE_CONTROL_SIZE,
+		  	fontWeight: SC.BOLD_WEIGHT,
+		  	value: 'Todos'
+		  }),
+		  
+		  addButton: SC.ButtonView.design({
+		  	layout: { centerY: 0, height: 24, right: 12, width: 100 },
+		  	title: 'Add Task'
+		  })
     }),
     
     middleView: SC.ScrollView.design({
@@ -29,7 +42,15 @@ Todos.mainPage = SC.Page.design({
     
     bottomView: SC.ToolbarView.design({
     	layout: { bottom: 0, left: 0, rght: 0, height: 32 },
-    	anchorLocation: SC.ANCHOR_BOTTOM
+    	childViews: 'summaryView'.w(),
+    	anchorLocation: SC.ANCHOR_BOTTOM,
+    	
+    	summaryView: SC.LabelView.design({
+    		layout: { centerY: 0, height: 18, left: 20, right: 20 },
+    		textAlign: SC.ALIGN_CENTER,
+    		
+    		value: 'Item Count'
+    	})
     })
   })
 
