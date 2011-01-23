@@ -41,8 +41,9 @@ Todos.mainPage = SC.Page.design({
     		selectionBinding: 'Todos.tasksController.selection',
     		contentValueKey: 'description',
     		contentCheckboxKey: 'isDone',
-    		
-    		rowHeight: 21
+    		rowHeight: 21,
+    		canEditContent: YES,
+    		canDeleteContent: YES
     	})
     }),
     

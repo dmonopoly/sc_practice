@@ -27,6 +27,6 @@ Todos.main = function main() {
   var tasks = Todos.store.find(Todos.Task); // goes to fixtures
   Todos.tasksController.set('content', tasks);
 
-} ;
+};
 
 function main() { Todos.main(); }

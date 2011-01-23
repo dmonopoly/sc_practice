@@ -11,8 +11,8 @@
   @extends SC.ArrayController
 */
 Todos.tasksController = SC.ArrayController.create(
-/** @scope Todos.tasksController.prototype */ {
-
+	SC.CollectionViewDelegate,
+	/** @scope Todos.tasksController.prototype */ {
 		summary: function() {
 		var len = this.get('length'), ret ;
 
@@ -22,5 +22,17 @@ Todos.tasksController = SC.ArrayController.create(
 
 		return ret;
 	}.property('length').cacheable()
+	,
+	collectionViewDeleteContent: function(view, content, indexes){
+		// destroy the records
+		var records = indexes.map(function(idx){
+			return this.objectAt(idx);
+		}, this);
+		records.invoke('destroy'); // removes record from store (fixtures)
+		
+		var selIndex = indexes.get('min')-1;
+		if (selIndex<0) selIndex = 0;
+		this.selectObject(this.objectAt(selIndex));
+	}
 	
 });
