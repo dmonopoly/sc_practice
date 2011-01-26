@@ -55,10 +55,17 @@ Todos.tasksController = SC.ArrayController.create(
 		// activate inline editor once UI can repaint
 		this.invokeLater(function(){
 			var contentIndex = this.indexOf(task);
-			var list = Todos.mainPage.getPath('mainPane.middleView.contentView');
+			var list = Todos.mainPage.getPath('mainPane.middleView.topLeftView.contentView');
 			var listItem = list.itemViewForContentIndex(contentIndex);
 			listItem.beginEditing();
 		});
+		return YES;
+	},
+	
+	// toggles 'done' property
+	toggleDone: function(){
+		var sel = this.get('selection');
+		sel.setEach('isDone', !sel.everyProperty('isDone'));
 		return YES;
 	}
 });

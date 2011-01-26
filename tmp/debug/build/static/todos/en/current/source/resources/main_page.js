@@ -33,34 +33,52 @@ Todos.mainPage = SC.Page.design({
 		  })
     }),
     
-    middleView: SC.ScrollView.design({
-    	hasHorizontalScroller: NO,
-    	layout: { top: 36, bottom: 32, left: 0, right: 0 },
-    	backgroundColor: 'white',
-
-    	contentView: SC.ListView.design({
-    		contentBinding: 'Todos.tasksController.arrangedObjects',
-    		selectionBinding: 'Todos.tasksController.selection',
-    		contentValueKey: 'description',
-    		contentCheckboxKey: 'isDone',
-    		rowHeight: 21,
-    		canEditContent: YES,
-    		canDeleteContent: YES
-    	})
-    }),
-    
-    bottomView: SC.ToolbarView.design({
-    	layout: { bottom: 0, left: 0, rght: 0, height: 32 },
-    	childViews: 'summaryView'.w(),
-    	anchorLocation: SC.ANCHOR_BOTTOM,
-    	
-    	summaryView: SC.LabelView.design({
-    		layout: { centerY: 0, height: 18, left: 20, right: 20 },
+		middleView: SC.SplitView.design({
+    	layout: { left: 0, top: 36, right: 0, bottom: 32 },
+    	layoutDirection: SC.LAYOUT_HORIZONTAL,
+    	autoresizeBehavior: SC.RESIZE_TOP_LEFT,
+    	defaultThickness: 0.8,
+    	// ListView now in ScrollView which is now in SplitView
+    	topLeftView: SC.ScrollView.design({
+		  	hasHorizontalScroller: NO,
+		  	layout: { top: 36, bottom: 32, left: 0, right: 0 },
+		  	backgroundColor: 'white',
+				
+		  	contentView: SC.ListView.design({
+		  		contentBinding: 'Todos.tasksController.arrangedObjects',
+		  		selectionBinding: 'Todos.tasksController.selection',
+		  		contentValueKey: 'description',
+		  		contentCheckboxKey: 'isDone',
+		  		rowHeight: 21,
+		  		canEditContent: YES,
+		  		canDeleteContent: YES,
+		  		target: 'Todos.tasksController',
+		  		action: 'toggleDone'
+		  	})
+    	}),
+    	topLeftMinThickness: 150,
+    	topLeftMaxThickness: 250,
+    	dividerView: SC.SplitDividerView.design({
+    		layout: {}
+    	}),
+    	// This view shows up on the right. It is a placeholder for now.
+    	bottomRightView: SC.LabelView.design({
     		textAlign: SC.ALIGN_CENTER,
-    		valueBinding: 'Todos.tasksController.summary'
+    		valueBinding: 'Todos.taskController.description'
     	})
-    })
-  })
-
+  	}),
+  	
+	  bottomView: SC.ToolbarView.design({
+	  	layout: { bottom: 0, left: 0, rght: 0, height: 32 },
+	  	childViews: 'summaryView'.w(),
+	  	anchorLocation: SC.ANCHOR_BOTTOM,
+	  	
+	  	summaryView: SC.LabelView.design({
+	  		layout: { centerY: 0, height: 18, left: 20, right: 20 },
+	  		textAlign: SC.ALIGN_CENTER,
+	  		valueBinding: 'Todos.tasksController.summary'
+	  	})
+	  })
+	})
 });
 ; if ((typeof SC !== 'undefined') && SC && SC.scriptDidLoad) SC.scriptDidLoad('todos');
