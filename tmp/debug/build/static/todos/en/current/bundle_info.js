@@ -5,7 +5,7 @@
 
           SC.BUNDLE_INFO[target_name] = {
             requires: ['sproutcore/empty_theme','sproutcore/debug','sproutcore/testing'],
-            styles:   ['/static/sproutcore/standard_theme/en/current/stylesheet.css?1295326496'],
+            styles:   ['/static/sproutcore/standard_theme/en/current/stylesheet.css?1293936763'],
             scripts:  []
           }
         })();
