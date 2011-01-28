@@ -62,10 +62,50 @@ Todos.mainPage = SC.Page.design({
     		layout: {}
     	}),
     	// This view shows up on the right. It is a placeholder for now.
+    	/*
     	bottomRightView: SC.LabelView.design({
     		textAlign: SC.ALIGN_CENTER,
     		valueBinding: 'Todos.taskController.description'
-    	})
+    	})*/
+    	bottomRightView: SC.View.design({
+    		classNames: 'todolabel'.w(),
+    		childViews: 'prompt okButton descriptionLabel descriptionText isDoneCheckbox'.w(),
+    		
+    		// PROMPT
+    		prompt: SC.LabelView.design({
+    			layout: { top: 12, left: 20, height: 18, right: 20 },
+    			value: 'Edit the task below:'
+    		}),
+    		
+    		// INPUTS
+    		
+    		descriptionLabel: SC.LabelView.design({
+    			layout: { top: 40, left: 20, width: 70, height: 18 },
+    			textAlign: SC.ALIGN_RIGHT,
+    			value: 'Description:'
+    		}),
+    		
+    		descriptionText: SC.TextFieldView.design({
+    			layout: { top: 40, left: 240, height: 80, width: 600 },
+    			hint: 'Enter task description here'.loc(),
+    			isTextArea: YES,
+    			valueBinding: 'Todos.taskController.description'
+    		}),
+    		
+    		isDoneCheckbox: SC.CheckboxView.design({
+    			layout: { top: 146, left: 100, right: 20, height: 40 },
+    			title: 'done?'.loc(),
+    			valueBinding: 'Todos.taskController.isDone'
+    		}),
+    		
+    		okButton: SC.ButtonView.design({
+    			layout: { bottom: 20, right: 20, width: 90, height: 24 },
+    			title: 'OK'.loc(),
+    			isDefault: YES,
+    			target: 'Todos.taskController',
+    			action: 'saveTask'
+    		}),
+    	}),
   	}),
   	
 	  bottomView: SC.ToolbarView.design({
