@@ -12,4 +12,13 @@ Todos.taskController = SC.ObjectController.create({
 		}
 	},
 	
+	observeRecordState: function(){
+		var taskRecord = this.get('content');
+		if (taskRecord.get('status') === SC.Record.READY_DIRTY ||
+				taskRecord.get('status') === SC.Record.READY_NEW) {
+				this.set('isSaveOk', YES);
+		} else {
+			this.set('isSaveOk', NO);
+		}
+	}.observes('*content.status'),
 });

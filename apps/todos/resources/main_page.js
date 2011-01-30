@@ -38,12 +38,12 @@ Todos.mainPage = SC.Page.design({
     	layoutDirection: SC.LAYOUT_HORIZONTAL,
     	autoresizeBehavior: SC.RESIZE_TOP_LEFT,
     	defaultThickness: 0.8,
-    	// ListView now in ScrollView which is now in SplitView
+    	// ListView in ScrollView which is in SplitView
     	topLeftView: SC.ScrollView.design({
 		  	hasHorizontalScroller: NO,
 		  	layout: { top: 36, bottom: 32, left: 0, right: 0 },
 		  	backgroundColor: 'white',
-				
+				// no childViews: 'contentView'.w() ?
 		  	contentView: SC.ListView.design({
 		  		contentBinding: 'Todos.tasksController.arrangedObjects',
 		  		selectionBinding: 'Todos.tasksController.selection',
@@ -102,6 +102,7 @@ Todos.mainPage = SC.Page.design({
     			layout: { bottom: 20, right: 20, width: 90, height: 24 },
     			title: 'OK'.loc(),
     			isDefault: YES,
+    			isEnabledBinding: 'Todos.taskController.isSaveOk',
     			target: 'Todos.taskController',
     			action: 'saveTask'
     		}),
@@ -109,7 +110,7 @@ Todos.mainPage = SC.Page.design({
   	}),
   	
 	  bottomView: SC.ToolbarView.design({
-	  	layout: { bottom: 0, left: 0, rght: 0, height: 32 },
+	  	layout: { bottom: 0, left: 0, right: 0, height: 32 },
 	  	childViews: 'summaryView'.w(),
 	  	anchorLocation: SC.ANCHOR_BOTTOM,
 	  	
